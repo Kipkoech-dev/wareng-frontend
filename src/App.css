@@ -1,0 +1,70 @@
+body { background: #f0f4ff; margin: 0; }
+.page { max-width: 700px; margin: 20px auto; font-family: Arial, sans-serif; padding: 10px; }
+.top-bar { display: flex; gap: 12px; align-items: center; background: white; padding: 15px; border-radius: 12px; border-top: 5px solid #f59e0b; }
+.logo { width: 50px; height: 50px; background: #1e40af; color: #f59e0b; font-size: 32px; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.title { margin: 0; color: #1e40af; font-size: 26px; letter-spacing: 1px; }
+.subtitle { margin: 2px 0 0 0; color: #666; font-size: 13px; }
+.track-link-wrap { text-align: center; margin: 15px 0; }
+.track-link { color: #16a34a; font-weight: bold; text-decoration: none; background: white; padding: 8px 16px; border-radius: 20px; display: inline-block; }
+.search-box { background: white; padding: 12px; border-radius: 10px; display: flex; gap: 10px; align-items: center; }
+.select { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ccc; }
+.found { color: #666; font-size: 13px; }
+.green { color: green; }
+.bold { font-weight: bold; }
+.muted { color: #999; }
+.big-emoji { font-size: 28px; font-weight: bold; }
+.bus-card { border: 1px solid #eee; padding: 15px; border-radius: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; background: white; border-left: 4px solid #1e40af; }
+.route { color: #666; font-size: 14px; }
+.seats-info { font-size: 12px; }
+.bus-right { text-align: right; }
+.price { color: #1e40af; font-weight: bold; font-size: 18px; }
+.btn-book { background: #1e40af; color: white; border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer; margin-top: 5px; font-weight: bold; }
+.empty { text-align: center; color: #666; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: flex-start; z-index: 1000; overflow-y: auto; padding: 20px 0; }
+.modal-overlay-dark { background: rgba(0,0,0,0.6); align-items: center; }
+.modal { background: white; padding: 25px; border-radius: 12px; width: 90%; max-width: 420px; }
+.modal-title { margin: 0 0 5px; color: #1e40af; }
+.modal-sub { margin: 0 0 10px; color: #666; font-size: 14px; }
+.input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+.form-row { display: flex; gap: 10px; margin-top: 10px; }
+.btn-cancel { flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc; background: white; cursor: pointer; }
+.btn-confirm { flex: 1; padding: 12px; background: #f59e0b; color: black; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.btn-close { margin-top: 10px; background: white; border: none; color: #666; cursor: pointer; }
+.btn-whatsapp { flex: 1; padding: 10px; background: #25D366; color: white; border: none; border-radius: 6px; cursor: pointer; }
+.btn-pay { flex: 1; padding: 10px; background: #1e40af; color: white; border: none; border-radius: 6px; cursor: pointer; }
+.seat-label { font-weight: bold; margin: 15px 0 5px; }
+.seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
+.driver { grid-column: 1 / span 5; text-align: center; font-size: 12px; color: #666; }
+.seat { padding: 10px 2px; text-align: center; border-radius: 6px; font-size: 13px; cursor: pointer; background: #e5e7eb; color: black; border: 1px solid #ccc; }
+.seat-picked { background: #1e40af !important; color: white !important; border: 2px solid #f59e0b !important; font-weight: bold; }
+.picked-info { font-size: 14px; margin: 10px 0; }
+.success-card { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; }
+.link-box { background: #f0f0f0; padding: 12px; border-radius: 8px; word-break: break-all; font-size: 13px; margin: 15px 0; }
+.track-page { max-width: 500px; margin: 20px auto; font-family: Arial, sans-serif; padding: 20px; }
+.back-link { color: #1e40af; text-decoration: none; font-weight: bold; }
+.track-title { text-align: center; color: #1e40af; }
+.track-search { display: flex; gap: 10px; margin-top: 20px; }
+.track-input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #ccc; }
+.btn-track { padding: 12px 20px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; }
+.booking-card { background: white; border: 2px solid #eee; padding: 20px; border-radius: 12px; margin-top: 20px; }
+.booking-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.status { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+.status-paid { background: #dcfce7; }
+.status-pending { background: #fef3c7; }
+.booking-id { font-size: 12px; color: #666; }
+.passenger-name { margin: 5px 0; }
+.booked-date { font-size: 12px; color: #666; }
+.steps { margin: 20px 0; border-top: 1px dashed #ccc; padding-top: 15px; }
+.step { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.step-dot { width: 22px; height: 22px; border-radius: 50%; color: white; display: flex; justify-content: center; align-items: center; font-size: 12px; }
+.step-dot.done { background: #16a34a; }
+.step-dot.current { background: #f59e0b; color: black; }
+.step-dot.todo { background: #ddd; }
+.btn-mpesa { width: 100%; padding: 14px; background: #16a34a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.paying-box { text-align: center; padding: 20px; background: #f0fdf4; border-radius: 10px; }
+.ticket-box { text-align: center; background: #dcfce7; padding: 15px; border-radius: 10px; margin-top: 15px; border: 2px dashed #16a34a; }
+.ticket-note { font-size: 12px; }
+.ticket-link { background: white; padding: 10px; border-radius: 6px; margin-top: 10px; word-break: break-all; font-size: 12px; }
+.btn-track-another { width: 100%; margin-top: 15px; padding: 10px; background: white; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; }
+.footer { background: #1e40af; color: white; padding: 15px; border-radius: 12px; text-align: center; margin-top: 25px; font-size: 13px; }
+.footer p { margin: 4px 0; }
