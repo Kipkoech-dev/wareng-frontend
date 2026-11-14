@@ -67,7 +67,7 @@ function Home() {
         </select>
       </div>
 
-      <p className="found">{filteredBuses.length} buses found</p>
+      <p className="found">{filteredBuses.length} vehicles found</p>
 
       {filteredBuses.map(bus=>(
         <div key={bus.id} className="bus-card">
