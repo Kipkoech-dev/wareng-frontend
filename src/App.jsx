@@ -80,7 +80,7 @@ function Home() {
         </div>
       ))}
 
-      {filteredBuses.length === 0 && <p className="empty">No buses for this route. Try All.</p>}
+      {filteredBuses.length === 0 && <p className="empty">No vehicles for this route. Try All.</p>}
 
       {selectedBus && (
         <div className="modal-overlay">
