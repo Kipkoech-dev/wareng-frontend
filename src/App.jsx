@@ -54,7 +54,7 @@ function Home() {
         <div className="logo">W</div>
         <div>
           <h1 className="title">WARENG SACCO</h1>
-          <p className="subtitle">Eldoret - Nairobi - Kisumu - Nakuru - Kitale</p>
+          <p className="subtitle">Eldoret - Nairobi - Kisumu - Nakuru - Kitale - Kericho - Kaplong - Bomet</p>
         </div>
       </div>
 
@@ -134,8 +134,8 @@ function Home() {
       )}
 
       <div className="footer">
-        <p><strong>Wareng Sacco Offices:</strong> Eldoret Town - Uganda Road</p>
-        <p>Call: 0722 000 000 | M-Pesa Till: 000000</p>
+        <p><strong>Wareng Sacco Offices:</strong> Eldoret Town, Nairobi Town, Kericho Town, Kisumu Town </p>
+        <p>Call: 0707 920 546 | M-Pesa Till: 000000</p>
       </div>
     </div>
   )
