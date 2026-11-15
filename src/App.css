@@ -32,11 +32,23 @@ body { background: #f0f4ff; margin: 0; }
 .btn-close { margin-top: 10px; background: white; border: none; color: #666; cursor: pointer; }
 .btn-whatsapp { flex: 1; padding: 10px; background: #25D366; color: white; border: none; border-radius: 6px; cursor: pointer; }
 .btn-pay { flex: 1; padding: 10px; background: #1e40af; color: white; border: none; border-radius: 6px; cursor: pointer; }
-.seat-label { font-weight: bold; margin: 15px 0 5px; }
-.seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
-.driver { grid-column: 1 / span 5; text-align: center; font-size: 12px; color: #666; }
-.seat { padding: 10px 2px; text-align: center; border-radius: 6px; font-size: 13px; cursor: pointer; background: #e5e7eb; color: black; border: 1px solid #ccc; }
-.seat-picked { background: #1e40af !important; color: white !important; border: 2px solid #f59e0b !important; font-weight: bold; }
+.seat {
+  background: #22c55e !important; /* GREEN = unbooked / free */
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+.seat-picked {
+  background: #FF7A00 !important; /* ORANGE = you picked it */
+  color: white !important;
+}
+.seat-booked {
+  background: #9ca3af !important; /* GREY = booked */
+  color: #555 !important;
+  cursor: not-allowed !important;
+}
 .picked-info { font-size: 14px; margin: 10px 0; }
 .success-card { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; }
 .link-box { background: #f0f0f0; padding: 12px; border-radius: 8px; word-break: break-all; font-size: 13px; margin: 15px 0; }
@@ -68,3 +80,13 @@ body { background: #f0f4ff; margin: 0; }
 .btn-track-another { width: 100%; margin-top: 15px; padding: 10px; background: white; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; }
 .footer { background: #1e40af; color: white; padding: 15px; border-radius: 12px; text-align: center; margin-top: 25px; font-size: 13px; }
 .footer p { margin: 4px 0; }
+.seats-left-info {
+  font-weight: 800;
+  color: #0B6E4F;
+  text-align: center;
+  margin: 5px 0;
+  font-size: 14px;
+  background: #e6f4ee;
+  padding: 8px;
+  border-radius: 8px;
+}

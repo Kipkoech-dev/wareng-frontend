@@ -92,6 +92,7 @@ function Home() {
               <input className="input" placeholder="Phone e.g. 0712345678" value={form.passenger_phone} onChange={e=>setForm({...form, passenger_phone:e.target.value})} required />
 
               <p className="seat-label">Pick Your Seat(s) - Tap to select</p>
+              <p className="seats-left-info">{selectedBus.available_seats} seats left out of {selectedBus.total_seats} • Green = Free • Grey = Booked • Orange = Your Pick</p>
               <div className="seat-grid">
                 <div className="driver">FRONT - Driver</div>
                 {Array.from({length: selectedBus.total_seats}, (_, i) => {
