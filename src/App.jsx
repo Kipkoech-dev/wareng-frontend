@@ -9,11 +9,19 @@ function Home() {
   const [selectedBus, setSelectedBus] = useState(null)
   const [form, setForm] = useState({ passenger_name: '', passenger_phone: '' })
   const [pickedSeats, setPickedSeats] = useState([])
+  const [bookings, setBookings] = useState([]);
   const [createdBooking, setCreatedBooking] = useState(null)
   const [searchFrom, setSearchFrom] = useState('All')
   const navigate = useNavigate()
 
-  const loadBuses = () => { fetch(API + '/buses/').then(r=>r.json()).then(setBuses) }
+  const loadBuses = () => { 
+  fetch(API + '/buses/').then(r=>r.json()).then(setBuses);
+  fetch(API + '/bookings/').then(r=>r.json()).then(d => setBookings(Array.isArray(d) ? d : d.results || []));
+} 
+const bookedSeats = selectedBus ? bookings
+  .filter(b => b.bus === selectedBus.id || b.bus_details?.id === selectedBus.id)
+  .flatMap(b => (b.seat_numbers || "").split(",").map(s => parseInt(s.trim())).filter(n => !isNaN(n)))
+  : [];
   useEffect(()=>{loadBuses()}, [])
 
   const openBus = (bus) => {
@@ -32,6 +40,7 @@ function Home() {
         passenger_name: form.passenger_name,
         passenger_phone: form.passenger_phone,
         seats_booked: pickedSeats.length,
+        seat_numbers: pickedSeats.join(","),
         total_amount: pickedSeats.length * parseFloat(selectedBus.price)
       })
     })
