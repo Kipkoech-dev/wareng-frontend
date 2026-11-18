@@ -8,6 +8,7 @@ function Home() {
   const [buses, setBuses] = useState([])
   const [selectedBus, setSelectedBus] = useState(null)
   const [form, setForm] = useState({ passenger_name: '', passenger_phone: '' })
+  const [isBooking, setIsBooking] = useState(false) 
   const [pickedSeats, setPickedSeats] = useState([])
   const [bookings, setBookings] = useState([]);
   const [createdBooking, setCreatedBooking] = useState(null)
@@ -30,9 +31,12 @@ const bookedSeats = selectedBus ? bookings
     setForm({ passenger_name: '', passenger_phone: '' })
   }
 
-  const handleBooking = async (e) => {
-    e.preventDefault()
-    if(pickedSeats.length === 0){ alert('Please pick at least 1 seat'); return }
+const handleBooking = async (e) => {
+  e.preventDefault()
+  if(isBooking) return
+  if(pickedSeats.length === 0){ alert('Please pick at least 1 seat'); return }
+  setIsBooking(true)
+  try {
     const res = await fetch(API + '/bookings/', {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -46,14 +50,16 @@ const bookedSeats = selectedBus ? bookings
     })
     if(res.ok){
       const saved = await res.json()
-      setCreatedBooking({ ...saved, bus_name: selectedBus.bus_name, route: selectedBus.source + ' to ' + selectedBus.destination, seats: pickedSeats.join(', ') })
+      setCreatedBooking({...saved, bus_name: selectedBus.bus_name, route: selectedBus.route})
       setSelectedBus(null); setPickedSeats([]); loadBuses()
     } else {
       const errData = await res.json().catch(()=>({}))
       console.log('BOOKING ERROR:', errData)
       alert('Booking failed: ' + JSON.stringify(errData))
     }
-  }
+  } catch(e){ alert('Network error') }
+  finally { setIsBooking(false) }
+}
 
   const trackingLink = createdBooking ? window.location.origin + '/track/' + createdBooking.id : ''
   const filteredBuses = searchFrom === 'All' ? buses : buses.filter(b => b.source === searchFrom)
