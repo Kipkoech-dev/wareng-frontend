@@ -17,7 +17,7 @@ function Home() {
   const loadBuses = () => { 
   fetch(API + '/buses/').then(r=>r.json()).then(setBuses);
   fetch(API + '/bookings/').then(r=>r.json()).then(d => setBookings(Array.isArray(d) ? d : d.results || []));
-} 
+  }  
 const bookedSeats = selectedBus ? bookings
   .filter(b => b.bus === selectedBus.id || b.bus_details?.id === selectedBus.id)
   .flatMap(b => (b.seat_numbers || "").split(",").map(s => parseInt(s.trim())).filter(n => !isNaN(n)))
@@ -104,20 +104,25 @@ const bookedSeats = selectedBus ? bookings
               <p className="seats-left-info">{selectedBus.available_seats} seats left out of {selectedBus.total_seats} • Green = Free • Grey = Booked • Orange = Your Pick</p>
               <div className="seat-grid">
                 <div className="driver">FRONT - Driver</div>
-                {Array.from({length: selectedBus.total_seats}, (_, i) => {
-                  const seatNum = i+1
-                  const isPicked = pickedSeats.includes(seatNum)
-                  return (
-                    <div key={seatNum} onClick={()=>{
-                      if(isPicked) setPickedSeats(pickedSeats.filter(s=>s!==seatNum))
-                      else if(pickedSeats.length < 5) setPickedSeats([...pickedSeats, seatNum])
-                      else alert('Max 5 seats per booking')
-                    }}
-                    className={isPicked ? 'seat seat-picked' : 'seat'}>
-                      {seatNum}
-                    </div>
-                  )
-                })}
+                  {Array.from({length: selectedBus.total_seats}, (_, i) => {
+                    const seatNum = i+1
+                    const isPicked = pickedSeats.includes(seatNum)
+                    const isBooked = bookedSeats.includes(seatNum)
+                    return (
+                      <div
+                        key={seatNum}
+                        onClick={()=>{
+                          if(isBooked) return;
+                          if(isPicked) setPickedSeats(pickedSeats.filter(s=>s!==seatNum))
+                          else if(pickedSeats.length < 5) setPickedSeats([...pickedSeats, seatNum])
+                          else alert('Max 5 seats per booking')
+                        }}
+                        className={isBooked ? 'seat seat-booked' : isPicked ? 'seat seat-picked' : 'seat'}
+                      >
+                        {seatNum}
+                      </div>
+                    )
+                  })}
               </div>
               <p className="picked-info">Picked: <strong>{pickedSeats.join(', ') || 'None'}</strong> - {pickedSeats.length} seat(s) = <strong className="green">Ksh {pickedSeats.length * parseFloat(selectedBus.price)}</strong></p>
 
