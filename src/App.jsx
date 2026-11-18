@@ -49,7 +49,9 @@ const bookedSeats = selectedBus ? bookings
       setCreatedBooking({ ...saved, bus_name: selectedBus.bus_name, route: selectedBus.source + ' to ' + selectedBus.destination, seats: pickedSeats.join(', ') })
       setSelectedBus(null); setPickedSeats([]); loadBuses()
     } else {
-      alert('Booking failed - try again')
+      const errData = await res.json().catch(()=>({}))
+      console.log('BOOKING ERROR:', errData)
+      alert('Booking failed: ' + JSON.stringify(errData))
     }
   }
 
