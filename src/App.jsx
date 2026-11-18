@@ -32,6 +32,7 @@ const bookedSeats = selectedBus ? bookings
   }
 
 const handleBooking = async (e) => {
+  alert('BUTTON CLICKED')
   e.preventDefault()
   if(isBooking) return
   if(pickedSeats.length === 0){ alert('Please pick at least 1 seat'); return }
