@@ -168,14 +168,28 @@ function TrackPage() {
   }
   useEffect(()=>{ if(id) fetchBooking(id) }, [id])
 
-  const payNow = async () => {
-    setMpesaStep('paying')
-    setTimeout(async ()=>{
-      const res = await fetch(API + '/bookings/' + booking.id + '/pay/', {method:'POST'})
-      const data = await res.json()
-      setBooking(data.booking); setMpesaStep('success')
-    }, 3000)
+const payNow = async () => {
+  setMpesaStep('paying')
+  try {
+    const res = await fetch(API + '/bookings/' + booking.id + '/pay/', {method:'POST'})
+    const data = await res.json()
+    console.log('PAY RESULT:', data)
+
+    if(res.ok){
+      // If backend returns {booking: {...}} use it, if it returns booking directly use it, if not, just mark current booking as paid
+      if(data.booking) setBooking(data.booking)
+      else if(data.id) setBooking(data)
+      else setBooking({...booking, payment_status: 'paid', mpesa_code: data.mpesa_code || data.CheckoutRequestID || 'PENDING'})
+      setMpesaStep('success')
+    } else {
+      alert('Payment failed: ' + (data.error || data.detail || 'Try again'))
+      setMpesaStep(null) // go back to Pay button, DON'T go blank
+    }
+  } catch(e){
+    alert('Network error - check internet / backend')
+    setMpesaStep(null)
   }
+}
 
   return (
     <div className="track-page">
