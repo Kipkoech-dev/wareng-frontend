@@ -134,7 +134,7 @@ const handleBooking = async (e) => {
               </div>
               <p className="picked-info">Picked: <strong>{pickedSeats.join(', ') || 'None'}</strong> - {pickedSeats.length} seat(s) = <strong className="green">Ksh {pickedSeats.length * parseFloat(selectedBus.price)}</strong></p>
 
-              <div className="form-row"><button type="button" onClick={()=>setSelectedBus(null)} className="btn-cancel">Cancel</button><button type="submit" className="btn-confirm">Book {pickedSeats.length} Seat(s)</button></div>
+              <div className="form-row"><button type="button" onClick={()=>setSelectedBus(null)} className="btn-cancel">Cancel</button><button type="submit" className="btn-confirm" disabled={isBooking}>{isBooking ? 'Booking... Please Wait...' : Book ${pickedSeats.length} Seat(s)}</button></div>
             </form>
           </div>
         </div>
