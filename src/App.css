@@ -58,7 +58,7 @@ body { background: #f0f4ff; margin: 0; }
 .track-search { display: flex; gap: 10px; margin-top: 20px; }
 .track-input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #ccc; }
 .btn-track { padding: 12px 20px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; }
-.booking-card { background: white; border: 2px solid #eee; padding: 20px; border-radius: 12px; margin-top: 20px; }
+.booking-card { background: white; border: 2px solid #eee; padding: 20px; border-radius: 12px; margin-top: 20px; padding-top: 90px; }
 .booking-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
 .status { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
 .status-paid { background: #dcfce7; }
