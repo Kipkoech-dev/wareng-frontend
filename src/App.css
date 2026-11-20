@@ -77,7 +77,17 @@ body { background: #f0f4ff; margin: 0; }
 .ticket-box { text-align: center; background: #dcfce7; padding: 15px; border-radius: 10px; margin-top: 15px; border: 2px dashed #16a34a; }
 .ticket-note { font-size: 12px; }
 .ticket-link { background: white; padding: 10px; border-radius: 6px; margin-top: 10px; word-break: break-all; font-size: 12px; }
-.btn-track-another { width: 100%; margin-top: 15px; padding: 10px; background: white; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; }
+.btn-track-another {
+  background: #f1f1f1;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 12px;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .footer { background: #1e40af; color: white; padding: 15px; border-radius: 12px; text-align: center; margin-top: 25px; font-size: 13px; }
 .footer p { margin: 4px 0; }
 .seats-left-info {
