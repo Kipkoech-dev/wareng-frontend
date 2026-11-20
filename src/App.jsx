@@ -211,7 +211,7 @@ const payNow = async () => {
 
   return (
     <div className="track-page">
-      <Link to="/" className="back-link">Back to Buses</Link>
+      <Link to="/" className="back-link">Back to Cars</Link>
       <h1 className="track-title">Track Booking</h1>
       {!booking && (
         <div className="track-search">
