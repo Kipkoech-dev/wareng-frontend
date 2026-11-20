@@ -87,13 +87,13 @@ const handleBooking = async (e) => {
       <p className="found">{filteredBuses.length} vehicles found</p>
 
       {filteredBuses.map(bus=>(
-        <div key={bus.id} className="bus-card">
+        <div key={bus.id} className="Car-card">
           <div>
             <strong>{bus.bus_name}</strong>
             <div className="route">{bus.source} to {bus.destination}</div>
             <div className="seats-info">{bus.available_seats}/{bus.total_seats} seats left - {bus.departure_time}</div>
           </div>
-          <div className="bus-right"><div className="price">Ksh {bus.price}</div><button onClick={()=>openBus(bus)} className="btn-book">Book</button></div>
+          <div className="Car-right"><div className="price">Ksh {bus.price}</div><button onClick={()=>openBus(bus)} className="btn-book">Book</button></div>
         </div>
       ))}
 
@@ -229,7 +229,7 @@ const payNow = async () => {
           </div>
           <h3 className="passenger-name">{booking.passenger_name}</h3>
           <p>{booking.passenger_phone}</p>
-          <p>Bus ID: {booking.bus} | Seats: {booking.seats_booked} | Total: <strong className="green">Ksh {booking.total_amount}</strong></p>
+          <p>Car ID: {booking.bus} | Seats: {booking.seats_booked} | Total: <strong className="green">Ksh {booking.total_amount}</strong></p>
           <p className="booked-date">Booked: {new Date(booking.booking_date).toLocaleString()}</p>
 
           <div className="steps">
