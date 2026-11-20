@@ -170,31 +170,41 @@ function TrackPage() {
   const [booking, setBooking] = useState(null)
   const [mpesaStep, setMpesaStep] = useState(null)
 
-  const fetchBooking = async (bid) => {
-    const res = await fetch(API + '/bookings/' + bid + '/')
-    if(res.ok){ const data = await res.json(); setBooking(data) } else { alert('Booking not found!') }
+const fetchBooking = async (bid) => {
+  const res = await fetch(API + '/bookings/' + bid + '/')
+  if (res.ok) {
+    const data = await res.json();
+    setBooking(data)
+  } else {
+    setBooking(null)
+    alert('Booking not found')
   }
+}
   useEffect(()=>{ if(id) fetchBooking(id) }, [id])
 
 const payNow = async () => {
+  if (!booking) return;
   setMpesaStep('paying')
   try {
-    const res = await fetch(API + '/bookings/' + booking.id + '/pay/', {method:'POST'})
+    const res = await fetch(API + '/bookings/' + booking.id + '/pay/', { method: 'POST' })
     const data = await res.json()
     console.log('PAY RESULT:', data)
 
-    if(res.ok){
-      // If backend returns {booking: {...}} use it, if it returns booking directly use it, if not, just mark current booking as paid
-      if(data.booking) setBooking(data.booking)
-      else if(data.id) setBooking(data)
-      else setBooking({...booking, payment_status: 'paid', mpesa_code: data.mpesa_code || data.CheckoutRequestID || 'PENDING'})
+    if (res.ok) {
+      // NEVER replace booking with incomplete data.
+      // Just update the 2 fields we know, keep everything else.
+      setBooking(prev => ({
+        ...prev,
+        payment_status: 'paid',
+        mpesa_code: data.mpesa_code || data.CheckoutRequestID || data.checkout_id || prev.mpesa_code
+      }))
       setMpesaStep('success')
     } else {
       alert('Payment failed: ' + (data.error || data.detail || 'Try again'))
-      setMpesaStep(null) // go back to Pay button, DON'T go blank
+      setMpesaStep(null)
     }
-  } catch(e){
-    alert('Network error - check internet / backend')
+  } catch (e) {
+    alert('Payment failed, try again')
     setMpesaStep(null)
   }
 }
@@ -212,7 +222,9 @@ const payNow = async () => {
       {booking && (
         <div className="booking-card">
           <div className="booking-header">
-            <span className={booking.payment_status==='paid' ? 'status status-paid' : 'status status-pending'}>{booking.payment_status==='paid'?'PAID':'PENDING ' + booking.payment_status.toUpperCase()}</span>
+          <span className={booking.payment_status === 'paid' ? 'status status-paid' : 'status status-pending'}>
+            {(booking.payment_status || 'pending').toUpperCase()}
+          </span>
             <span className="booking-id">ID #{booking.id}</span>
           </div>
           <h3 className="passenger-name">{booking.passenger_name}</h3>
